@@ -1,0 +1,6 @@
+{
+  "name": "DevForge IDE - Professional Browser-Based Cloud IDE & AI Workspace",
+  "description": "A powerful, all-in-one browser IDE with Monaco editor, multi-tab layout, integrated terminal, live web preview with DOM inspector, project-aware AI assistant, and full file management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

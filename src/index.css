@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ide-bg: #18181b;
+    --ide-workbench: #1f1f23;
+    --ide-sidebar: #18181b;
+    --ide-activity: #121214;
+    --ide-header: #121214;
+    --ide-panel: #18181b;
+    --ide-editor: #1e1e24;
+    --ide-tabs: #18181b;
+    --ide-tab-active: #1e1e24;
+    --ide-border: #27272a;
+    --ide-border-subtle: #202023;
+    --ide-fg: #e4e4e7;
+    --ide-fg-muted: #a1a1aa;
+    --ide-accent: #3b82f6;
+    --ide-accent-hover: #2563eb;
+    --ide-status: #007acc;
+    --ide-danger: #ef4444;
+    --ide-warning: #f59e0b;
+    --ide-success: #10b981;
+  }
+
+  .theme-light {
+    --ide-bg: #f8fafc;
+    --ide-workbench: #ffffff;
+    --ide-sidebar: #f1f5f9;
+    --ide-activity: #0f172a;
+    --ide-header: #e2e8f0;
+    --ide-panel: #f8fafc;
+    --ide-editor: #ffffff;
+    --ide-tabs: #f1f5f9;
+    --ide-tab-active: #ffffff;
+    --ide-border: #e2e8f0;
+    --ide-border-subtle: #cbd5e1;
+    --ide-fg: #0f172a;
+    --ide-fg-muted: #64748b;
+    --ide-accent: #2563eb;
+    --ide-accent-hover: #1d4ed8;
+    --ide-status: #0284c7;
+    --ide-danger: #dc2626;
+    --ide-warning: #d97706;
+    --ide-success: #059669;
+  }
+}
+
+.visitor-page {
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-attachment: fixed;
+  animation: visitor-grid-drift 48s linear infinite;
+}
+
+.visitor-hero {
+  overflow: hidden;
+}
+
+.visitor-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 34%, rgba(59, 130, 246, 0.08) 49%, transparent 64%);
+  background-size: 220% 100%;
+  animation: visitor-build-sweep 14s ease-in-out infinite;
+}
+
+.visitor-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.4) 0.7px, transparent 0.7px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 24%, transparent 100%);
+}
+
+.visitor-signal {
+  position: absolute;
+  z-index: 0;
+  padding: 5px 8px;
+  border-left: 1px solid rgba(96, 165, 250, 0.45);
+  background: rgba(12, 13, 18, 0.72);
+  color: rgba(161, 161, 170, 0.72);
+  font: 9px/1.2 'Fira Code', ui-monospace, monospace;
+  letter-spacing: 0;
+  pointer-events: none;
+  animation: visitor-signal-float 6s ease-in-out infinite;
+}
+
+.visitor-signal-app {
+  top: 44%;
+  left: 1%;
+}
+
+.visitor-signal-game {
+  top: 44%;
+  right: 1%;
+  animation-delay: -3s;
+}
+
+.visitor-app-preview {
+  animation: visitor-preview-enter 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes visitor-grid-drift {
+  to { background-position: 56px 56px; }
+}
+
+@keyframes visitor-build-sweep {
+  0%, 18% { background-position: 120% 0; }
+  68%, 100% { background-position: -120% 0; }
+}
+
+@keyframes visitor-signal-float {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-7px); opacity: 1; }
+}
+
+@keyframes visitor-preview-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .visitor-signal { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visitor-page,
+  .visitor-hero::after,
+  .visitor-signal,
+  .visitor-app-preview {
+    animation: none;
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+}
+
+code, pre, .font-mono {
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 140, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 140, 0.45);
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
